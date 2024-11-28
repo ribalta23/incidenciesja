@@ -1,0 +1,137 @@
+.contenedor_configuracions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.configuracio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.configuracio_menu {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--color-primary);
+    color: var(--color-primary);
+}
+
+.tipus_incidencia_cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.tipus_card {
+    border: 1px solid var(--color-tertiary);
+    padding: 5px 15px;
+    width: 100%;
+    border-radius: 8px;
+    position: relative;
+}
+
+.tipus_card h4 {
+    margin: 0;
+    font-size: 1.1em;
+    color: var(--color-primary);
+}
+
+.tipus_card p {
+    color: var(--color-primary);
+    font-size: 0.9em;
+    margin: 5px 0;
+}
+
+.btn_eliminar {
+    color: #d9534f;
+    text-decoration: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}º
+
+.btn_eliminar:hover {
+    color: #c9302c;
+}
+
+.configuracio_content {
+    width: 100%;
+}
+
+.pis_group {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border: 2px solid var(--color-primary);
+    border-radius: 8px;
+}
+
+.pis_group h4 {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-tertiary);
+    padding-bottom: 0.3rem;
+    margin-bottom: 1rem;
+}
+
+.espais_cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.espai_card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem;
+    border-radius: 6px;
+    border: 1px solid var(--color-tertiary);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin: 5px 0;
+}
+
+.espai_card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.espai_card h4 {
+    font-size: 1.1em;
+    color: var(--color-primary);
+    margin: 0;
+    border: none;
+}
+
+.espai_card p {
+    font-size: 0.9em;
+    color: #666;
+    margin: 0;
+}
+
+.btn_eliminar_espais {
+    color: #D9534F;
+    font-size: 1.2em;
+    text-decoration: none;
+    margin-left: 1rem;
+    transition: color 0.2s;
+}
+
+#aules_select div{
+    margin: 5px 0;
+}
+
+.form_espais {
+    margin: 20px 0;
+}

@@ -1,0 +1,95 @@
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+.day-header {
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+    background: var(--color-quaternary);
+    color: var(--color-primary);
+}
+.day-cell {
+    border: 1px solid var(--color-tertiary);
+    min-height: 80px;
+    max-height: 80px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.day-cell.empty {
+    cursor: default;
+}
+.day-cell:hover {
+    background: #f0f8ff;
+}
+.date {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 12px;
+}
+.event {
+    padding: 5px;
+    margin-top: auto;
+    color: var(--color-primary);
+    font-size: 12px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.event_baixa {
+    background: var(--color-baixes);
+}
+.event_mitjana {
+    background: var(--color-moderades);
+}
+.event_alta {
+    background: var(--color-altes);
+}
+.calendar-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.event-list {
+    margin-top: 20px;
+    width: 100%;
+}
+
+#eventList {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.incidencia {
+    padding: 5px 10px;
+    color: var(--color-primary);
+    width: 100%;
+    border: 2px solid var(--color-primary);
+    border-radius: 5px;
+}
+
+.incidencia a {
+    text-decoration: none;
+    color: var(--color-links);
+}
+
+.btn_mes {
+    background: none;
+    border: none;
+    color: var(--color-primary);
+    cursor: pointer;
+    font-size: 20px;
+}

@@ -1,0 +1,115 @@
+.container_usuaris {
+    width: 100%;
+}
+.usuaris {
+    width: 100%;
+    border: 2px solid var(--color-primary);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.esquerra {
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.esquerra p {
+    font-size: 30px;
+    font-weight: bold;
+}
+.dreta p{
+    color: var(--color-tertiary);
+}
+
+.dreta {
+    padding: 10px;
+}
+.profile-img {
+    width: 60px; 
+    height: 60px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+}
+.imatge {
+    width: 70px; 
+    height: 70px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    margin-left: 10px;
+}
+.buscador {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; 
+    position: relative;
+    margin: 10px 0;
+}
+
+.input-buscador {
+    width: 100%; 
+    padding: 8px 10px 8px 40px; 
+    box-sizing: border-box; 
+    border: 2px solid var(--color-primary); 
+    border-radius: 4px; 
+}
+
+.btn-lupa {
+    position: absolute;
+    left: 10px; 
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: var(--color-tertiary); 
+    font-size: 16px; 
+}
+
+.password-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.password-container input {
+    width: 100%;
+}
+
+.toggle-password {
+    margin-left: 10px;
+}
+
+.img_user {
+    display: none;
+    margin-top: 0;
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 50%;
+    border: 2px solid var(--color-tertiary);
+    margin-right: 10px;
+}
+
+.img_user_edit {
+    margin-top: 0;
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 50%;
+    border: 2px solid var(--color-tertiary);
+    margin-right: 10px;
+}
+.bttn_img {
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    margin-top: 20px;
+    width: 100%;
+}
+.error-message {
+    color: red;
+  
+ 
+}

@@ -1,0 +1,243 @@
+:root {
+    --color-primary: #2E2E2E;
+    --color-secondary: white;
+    --color-tertiary: #6e6e6e;
+    --color-quaternary: #c2c2c2;
+    --color-altes: #ff9b9b;
+    --color-baixes: #ccffcc;
+    --color-moderades: #fff9a1;
+    --color-links: #007bff;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    font-family: 'Nunito', sans-serif;
+}
+
+.container {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+    .container {
+        margin-top: 90px;
+    }
+}
+
+@media (min-width: 769px) {
+    body {
+        flex-direction: row;
+    }
+    .container {
+        margin-left: 250px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .sidebar {
+        width: 250px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background-color: var(--color-primary);
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    }
+    .sidebar a {
+        color: var(--color-secondary);
+        text-decoration: none;
+        display: block;
+        padding: 10px 0;
+        font-size: 1.2rem;
+    }
+    .img_logo {
+        margin: 0;
+        padding: 0;
+    }
+    .logo_image {
+        height: 60px;
+        margin-bottom: 20px;
+        margin-left: 0;
+    }
+    .user_image {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 10px;
+    }
+    .user_info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .user_info h3 {
+        margin: 0;
+        font-size: 1.2rem;
+        color: var(--color-secondary);
+    }
+    .user_info p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--color-tertiary);
+    }
+    .desplegable_options_menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+    }
+    .desplegable_options_content {
+        padding-left: 20px;
+    }
+
+    .contenedor {
+        width: 1200px;
+    }
+    .menu_top {
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--color-primary);
+    }
+}
+
+
+.contenedor {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 10px;
+}
+
+.menu_top {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10px 0;
+    color: var(--color-primary);
+}
+
+.menu_top div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn_tornar {
+    color: var(--color-primary);
+    padding: 10px;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.menu_top button{
+    background: var(--color-primary);
+    color: white;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contenedor form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.form_element {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+.form_element input {
+    padding: 8px 10px;
+    border: 2px solid var(--color-primary);
+    border-radius: 5px;
+    color: var(--color-primary);
+}
+.form_element input:focus {
+    outline: none;
+}
+.form_element textarea {
+    padding: 8px 10px;
+    border: 2px solid var(--color-primary);
+    border-radius: 2px;
+    color: var(--color-primary);
+    resize: vertical;
+}
+.form_element textarea:focus {
+    outline: none;
+}
+
+.form_element label {
+    font-size: 15px;
+    color: var(--color-tertiary);
+}
+
+.form_element select {
+    padding: 8px 10px;
+    border: 2px solid var(--color-primary);
+    border-radius: 5px;
+    color: var(--color-primary);
+}
+
+.form_element option {
+    padding: 8px 10px;
+    border: 2px solid var(--color-primary);
+    border-radius: 5px;
+    color: var(--color-primary);
+}
+
+.radio_group {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.radio_group label {
+    font-size: 12px;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.radio_group input[type="radio"] {
+    display: none;
+}
+
+.radio_group label {
+    padding: 10px 20px;
+    border: 2px solid var(--color-primary);
+    border-radius: 10px;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.form_element button {
+    background: var(--color-primary);
+    color: white;
+    padding: 12px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -1,0 +1,108 @@
+:root {
+    --color-primary: #2E2E2E;
+    --color-secondary: white;
+    --color-tertiary: #b0b0b0;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background-color: var(--color-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Nunito', sans-serif;
+}
+
+.login_container {
+    background-color: transparent;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 2px solid var(--color-secondary);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 350px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.login_container img {
+    width: 80px;
+    margin-bottom: 1rem;
+}
+
+.login_container span {
+    font-size: 1.5rem;
+    color: var(--color-secondary);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.login_form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.input_group {
+    position: relative;
+}
+
+.input_group input {
+    width: 100%;
+    padding: 0.75rem;
+    background: transparent;
+    border: 2px solid var(--color-secondary);
+    border-radius: 8px;
+    color: var(--color-secondary);
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.input_group input:focus {
+    border-color: var(--color-tertiary);
+}
+
+button {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    border: none;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+button:hover {
+    background-color: var(--color-tertiary);
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+  /* Estilo moderno para los iconos de Font Awesome */
+  .input_group i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-secondary);
+    font-size: 1.25rem;
+  }
+
+  .input_group input {
+    padding-left: 2.5rem; /* Espacio para el icono */
+  }

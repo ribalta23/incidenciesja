@@ -1,0 +1,13 @@
+h1 {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.contenedor img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: block;
+    border: 2px solid var(--color-primary);
+}

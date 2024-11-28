@@ -1,0 +1,101 @@
+.users_container {
+    width: 100%;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid var(--color-tertiary);
+}
+.user img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.user p {
+    margin-left: 20px;
+    color: var(--color-primary);
+}
+
+.a_user {
+    text-decoration: none;
+}
+
+.user:hover {
+    background-color: var(--color-quaternary);
+}
+
+.input-buscador {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--color-tertiary);
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.menu_top img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+.link_perfil {
+    text-decoration: none;
+    color: var(--color-primary);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.missatges_container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.missatges_content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 5px;
+    border: 2px solid var(--color-tertiary);
+    height: 600px;
+    justify-content: end;
+}
+
+.missatge {
+    background-color: var(--color-quaternary);
+    border-radius: 12px;
+    padding: 15px;
+    margin: 10px 5px;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+.missatge strong {
+    color: #2e3a59;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.missatge p {
+    color: #333;
+    font-size: 1rem;
+    line-height: 1.4;
+    margin: 5px 0 8px;
+}
+
+.missatge small {
+    font-size: 0.75rem;
+    color: #7a7a7a;
+    display: block;
+    text-align: right;
+    margin-top: 5px;
+}
