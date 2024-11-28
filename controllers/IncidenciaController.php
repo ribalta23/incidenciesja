@@ -68,6 +68,7 @@ class IncidenciaController {
             if ($id_incidencia) {
                 $notificacioController = new NotificacionsController();
                 $notificacioController->crearNotificacio($id_incidencia, 'creada');
+                $this->enviarCorreu($id_incidencia);
                 header('Location: ../public/index.php?action=incidencies');
                 exit();
             } else {
@@ -260,6 +261,85 @@ class IncidenciaController {
         header('Content-Type: application/json');
         echo json_encode($eventos);
     }
+    public function enviarCorreu($id_incidencia){
+        $tecnic = $this->incidencia->obtenirTecnicAssignat($id_incidencia);
+        if($tecnic){
+            $nomTecnic = $tecnic['nom'];
+            $cognomTecnic = $tecnic['cognoms'];
+            $emailTecnic = $tecnic['email'];
+            $titol = $this->incidencia->obtenirTitol($id_incidencia);
+            $domain = $_SERVER['HTTP_HOST'];
+            $resetLink = "http://$domain/incidenciesja/public/index.php?action=veureIncidencia&idIncidencia=$id_incidencia";
+            $subject = "Nova incidencia assignada - IncidenciesJa!";
+            $message = "
+            <html>
+            <head>
+                <title>Tens una nova incidencia assignada</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        line-height: 1.6;
+                        color: #333;
+                    }
+                    .container {
+                        width: 80%;
+                        margin: 0 auto;
+                        padding: 20px;
+                        border: 1px solid #ddd;
+                        border-radius: 10px;
+                        background-color: #f9f9f9;
+                    }
+                    .header {
+                        text-align: center;
+                        margin-bottom: 20px;
+                    }
+                    .header img {
+                        max-width: 150px;
+                        height: auto;
+                    }
+                    .content {
+                        text-align: left;
+                    }
+                    .content p {
+                        margin-bottom: 20px;
+                    }
+                    .footer {
+                        text-align: center;
+                        margin-top: 20px;
+                        font-size: 0.9em;
+                        color: #777;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class='container'>
+                    <div class='header'>
+                        <img src='http://$domain/incidenciesja/public/assets/brand/logo_tot_black.png' alt='Imatge de recuperació'>
+                    </div>
+                    <div class='content'>
+                        <p>Hola <strong>$nomTecnic $cognomTecnic</strong>,</p>
+                        <p>Tens assignada una nova incidencia, anomenada: <strong>$titol </strong>. Si us plau, revisa els detalls al sistema:</p>
+                        <p><a href='$resetLink'>$resetLink</a></p>
+                        <p>Gràcies</p>
+                    </div>
+                    <div class='footer'>
+                        <p>IncidenciesJa! - Tots els drets reservats</p>
+                    </div>
+                </div>
+            </body>
+            </html>
+            ";
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+            $headers .= "From: no-reply@incidenciesja.com" . "\r\n";
+            if(mail($emailTecnic, $subject, $message, $headers)){
+                echo "<script>alert('Correu enviat correctament.');</script>";
+            } else {
+                echo "<script>alert('Error al enviar el correu.');</script>";
+            }
+        }
+    }
+
 }
 
 // ---------- CRIDES ----------

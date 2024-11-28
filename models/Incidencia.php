@@ -235,6 +235,26 @@ public function obtenir_incidencies_filtrades_usuari($filters) {
     $query .= " ORDER BY data_creacio DESC";
     return $this->conn->query($query);
 }
+
+    public function obtenirTecnicAssignat($id_incidencia){
+        $query = "SELECT u.nom, u.cognoms, u.email FROM usuaris u INNER JOIN incidencia i ON u.id_usuari = i.id_usuari WHERE i.id_incidencia = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("i", $id_incidencia);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+
+    }
+
+    public function obtenirTitol($id_incidencia){
+        $query = "SELECT titol FROM incidencia WHERE id_incidencia = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("i", $id_incidencia);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $incidencia = $result->fetch_assoc();
+        return $incidencia ? $incidencia['titol'] : null;
+    }
     
     
 }
