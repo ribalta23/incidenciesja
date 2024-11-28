@@ -106,3 +106,11 @@ button:active {
   .input_group input {
     padding-left: 2.5rem; /* Espacio para el icono */
   }
+
+  .recover_password a{
+    margin-top: 1rem;
+    color: var(--color-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: inline-block;
+  }

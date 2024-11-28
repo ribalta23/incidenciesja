@@ -123,6 +123,51 @@ class UsuariController {
             }
         }
     }
+
+    public function sendRecoveryEmail() {
+        $email = $_POST['email'];
+        $user = $this->usuari->verifyEmail($email);
+        if ($user) {
+            $token = bin2hex(random_bytes(50));
+            if ($this->usuari->addToken($email, $token)) {
+                $domain = $_SERVER['HTTP_HOST'];
+                $resetLink = "http://$domain/incidenciesja/views/reset_password.php?token=$token";
+                $subject = "Recuperar Contrasenya - IncidenciesJa!";
+                $message = "Hola,\n\nPer favor, fes clic en l'enllaç següent per restablir la teva contrasenya:\n\n$resetLink\n\nSi no has sol·licitat un restabliment de contrasenya, ignora aquest correu electrònic.";
+                $headers = "From: no-reply@incidenciesja.com";
+
+                if (mail($email, $subject, $message, $headers)) {
+                    echo "<script>alert('Correu electrònic de recuperació enviat.');</script>";
+                    echo '<script>window.location.href = "../public/index.php";</script>';
+                } else {
+                    echo "<script>alert('Error en enviar el correu electrònic.');</script>";
+                }
+            }
+        } else {
+            echo "<script>alert('Correu electrònic no trobat.');</script>";
+        }
+        header('Location: ../views/index.php');
+        exit();
+    }
+
+    public function resetPassword() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $token = $_POST['token'];
+            $newPassword = $_POST['new_password'];
+            if ($this->usuari->resetPassword($token, $newPassword)) {
+                echo "<script>alert('Contrasenya restablerta correctament.');</script>";
+                echo '<script>window.location.href = "../public/index.php";</script>';
+                exit();
+            } else {
+                echo "<script>alert('Error al restablir la contrasenya.');</script>";
+                header('Location: ../views/reset_password.php?token=' . $token);
+            }
+        }
+    }
+
+    public function existeisToken($token) {
+        return $this->usuari->verifyToken($token);
+    }
 }
 
 if (isset($_GET['action'])) {
@@ -144,6 +189,12 @@ if (isset($_GET['action'])) {
             break;
         case 'actualitzarPerfil':
             $controller->actualitzarPerfil();
+            break;
+        case 'sendRecoveryEmail':
+            $controller->sendRecoveryEmail();
+            break;
+        case 'resetPassword':
+            $controller->resetPassword();
             break;
         default:
             echo "Acció no vàlida.";

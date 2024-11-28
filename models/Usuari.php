@@ -10,7 +10,7 @@ class Usuari {
     public $contrasenya;
     public $telefono;
     public $nova_contrasenya;
-
+    public $token;
     public function __construct($db) {
         $this->conn = $db;
     }
@@ -78,6 +78,58 @@ class Usuari {
             return $stmt->execute();
         }
 
+        return false;
+    }
+
+    public function addToken($email, $token) {
+        $query = "UPDATE " . $this->table . " SET token = ? WHERE email = ?";
+        $stmt = $this->conn->prepare($query);
+
+        if ($stmt) {
+            $stmt->bind_param("ss", $token, $email);
+            return $stmt->execute();
+        }
+        return false;
+    }
+
+    public function verifyEmail($email) {
+        $query = "SELECT * FROM " . $this->table . " WHERE email = ? LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+
+        if ($stmt) {
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_assoc();
+        }
+        return false;
+    }
+
+    public function verifyToken($token) {
+        $query = "SELECT * FROM " . $this->table . " WHERE token = ? LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+
+        if ($stmt) {
+            $stmt->bind_param("s", $token);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_assoc();
+        }
+        return false;
+    }
+
+    public function resetPassword($token, $newPassword) {
+        $user = $this->verifyToken($token);
+        if ($user) {
+            $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+            $query = "UPDATE " . $this->table . " SET contrasenya = ?, token = NULL WHERE token = ?";
+            $stmt = $this->conn->prepare($query);
+
+            if ($stmt) {
+                $stmt->bind_param("ss", $hashedPassword, $token);
+                return $stmt->execute();
+            }
+        }
         return false;
     }
 }

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,22 +8,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="shortcut icon" href="../public/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="../public/css/login.css">
-  <title>IncidenciesJa! - Solicitar Token</title>
+  <title>IncidenciesJa! - Recuperar Contrasenya</title>
 </head>
 <body>
   <div class="login_container">
     <img src="../public/assets/brand/logo_simbol_white.png" alt="Logo">
-    <span>Solicitar Token</span>
-    <form class="login_form" method="POST" action="../controllers/RecuperarController.php?action=solicitarToken">
+    <span>Recuperar Contrasenya</span>
+    <form class="login_form" method="POST" action="../controllers/UsuariController.php?action=sendRecoveryEmail">
       <div class="input_group">
         <i class="fas fa-envelope"></i>
         <input required name="email" placeholder="Email" type="email" />
       </div>
-      <button type="submit">Enviar Token</button>
+      <button type="submit">Enviar</button>
     </form>
-    <?php if (isset($_GET['error']) && $_GET['error'] == 'email_no_registrado'): ?>
-      <p class="error_message">El correo electrónico no está registrado.</p>
-    <?php endif; ?>
   </div>
 </body>
 </html>
