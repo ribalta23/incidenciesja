@@ -1,10 +1,3 @@
-<?php
-
-if (!defined('ACCESS_ALLOWED')) {
-    header('Location: /404.php');
-    exit;
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
