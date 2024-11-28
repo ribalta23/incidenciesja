@@ -4,7 +4,7 @@
 
     if(!$controller->existeisToken($_GET['token'])) {
         echo "<script>alert('Token no vàlid.');</script>";
-        header('Location: ../public/index.php?action=login');
+        echo '<script>window.location.href = "../public/index.php?action=login";</script>';
         exit;
     }
 ?>

@@ -133,7 +133,7 @@ class UsuariController {
             $token = bin2hex(random_bytes(50));
             if ($this->usuari->addToken($email, $token)) {
                 $domain = $_SERVER['HTTP_HOST'];
-                $resetLink = "http://$domain/incidenciesja/views/reset_password.php?token=$token";
+                $resetLink = "http://$domain/incidenciesja/views/reset_password.php?action=token&token=$token";
                 $subject = "Recuperar Contrasenya - IncidenciesJa!";
                 $message = "
                 <html>
