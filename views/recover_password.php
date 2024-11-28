@@ -20,6 +20,9 @@
         <input required name="email" placeholder="Email" type="email" />
       </div>
       <button type="submit">Enviar</button>
+      <div class="recover_password">
+      <a href="../public/index.php?action=login">Iniciar sessió</a>
+    </div>
     </form>
   </div>
 </body>

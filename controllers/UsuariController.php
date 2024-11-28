@@ -127,18 +127,35 @@ class UsuariController {
     public function sendRecoveryEmail() {
         $email = $_POST['email'];
         $user = $this->usuari->verifyEmail($email);
+        $Nom_Usuari = $user['nom'];
+        $Cognom_Usuari = $user['cognoms'];
         if ($user) {
             $token = bin2hex(random_bytes(50));
             if ($this->usuari->addToken($email, $token)) {
                 $domain = $_SERVER['HTTP_HOST'];
                 $resetLink = "http://$domain/incidenciesja/views/reset_password.php?token=$token";
                 $subject = "Recuperar Contrasenya - IncidenciesJa!";
-                $message = "Hola,\n\nPer favor, fes clic en l'enllaç següent per restablir la teva contrasenya:\n\n$resetLink\n\nSi no has sol·licitat un restabliment de contrasenya, ignora aquest correu electrònic.";
+                $message = "
+                <html>
+                <head>
+                    <title>Recuperar Contrasenya</title>
+                </head>
+                <body>
+                    <p>Hola <strong>$Nom_Usuari $Cognom_Usuari</strong>,</p>
+                    <p>Per favor, fes clic en l'enllaç següent per restablir la teva contrasenya:</p>
+                    <p><a href='$resetLink'>$resetLink</a></p>
+                    <p>Si no has sol·licitat un restabliment de contrasenya, ignora aquest correu electrònic.</p>
+                    <img src='http://$domain/incidenciesja/public/assets/brand/logo_tot_black.png' alt='Imatge de recuperació'>
+                </body>
+                </html>
+            ";
+                $headers = "MIME-Version: 1.0" . "\r\n";
+                $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
                 $headers = "From: no-reply@incidenciesja.com";
 
                 if (mail($email, $subject, $message, $headers)) {
                     echo "<script>alert('Correu electrònic de recuperació enviat.');</script>";
-                    echo '<script>window.location.href = "../public/index.php";</script>';
+                    echo '<script>window.location.href = "../public/index.php?action=login";</script>';
                 } else {
                     echo "<script>alert('Error en enviar el correu electrònic.');</script>";
                 }
@@ -146,7 +163,7 @@ class UsuariController {
         } else {
             echo "<script>alert('Correu electrònic no trobat.');</script>";
         }
-        header('Location: ../views/index.php');
+        header('Location: ../views/index.php?action=login');
         exit();
     }
 
@@ -156,7 +173,7 @@ class UsuariController {
             $newPassword = $_POST['new_password'];
             if ($this->usuari->resetPassword($token, $newPassword)) {
                 echo "<script>alert('Contrasenya restablerta correctament.');</script>";
-                echo '<script>window.location.href = "../public/index.php";</script>';
+                echo '<script>window.location.href = "../public/index.php?action=login";</script>';
                 exit();
             } else {
                 echo "<script>alert('Error al restablir la contrasenya.');</script>";
