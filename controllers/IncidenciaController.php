@@ -332,12 +332,10 @@ class IncidenciaController {
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
             $headers .= "From: no-reply@incidenciesja.com" . "\r\n";
-            if(mail($emailTecnic, $subject, $message, $headers)){
-                echo "<script>alert('Correu enviat correctament.');</script>";
-            } else {
-                echo "<script>alert('Error al enviar el correu.');</script>";
-            }
+            mail($emailTecnic, $subject, $message, $headers);
+        
         }
+        
     }
 
 }
