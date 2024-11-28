@@ -71,6 +71,14 @@ class RecuperarController {
 
 if (isset($_REQUEST['action'])) {
     $controller = new RecuperarController();
-    $action = $_REQUEST['action'];
+    
+    switch ($_REQUEST['action']) {
+        case 'solicitarToken':
+            $controller->solicitarToken();
+            break;
+        case 'recuperar_contrasenya':
+            $controller->recuperarContrasenya();
+            break;
+    }
     $controller->$action();
 }
