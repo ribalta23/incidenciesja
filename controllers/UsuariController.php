@@ -139,20 +139,64 @@ class UsuariController {
                 <html>
                 <head>
                     <title>Recuperar Contrasenya</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            line-height: 1.6;
+                            color: #333;
+                        }
+                        .container {
+                            width: 80%;
+                            margin: 0 auto;
+                            padding: 20px;
+                            border: 1px solid #ddd;
+                            border-radius: 10px;
+                            background-color: #f9f9f9;
+                        }
+                        .header {
+                            text-align: center;
+                            margin-bottom: 20px;
+                        }
+                        .header img {
+                            max-width: 150px;
+                            height: auto;
+                        }
+                        .content {
+                            text-align: left;
+                        }
+                        .content p {
+                            margin-bottom: 20px;
+                        }
+                        .footer {
+                            text-align: center;
+                            margin-top: 20px;
+                            font-size: 0.9em;
+                            color: #777;
+                        }
+                    </style>
                 </head>
                 <body>
-                    <p>Hola <strong>$Nom_Usuari $Cognom_Usuari</strong>,</p>
-                    <p>Per favor, fes clic en l'enllaç següent per restablir la teva contrasenya:</p>
-                    <p><a href='$resetLink'>$resetLink</a></p>
-                    <p>Si no has sol·licitat un restabliment de contrasenya, ignora aquest correu electrònic.</p>
-                    <img src='http://$domain/incidenciesja/public/assets/brand/logo_tot_black.png' alt='Imatge de recuperació'>
+                    <div class='container'>
+                        <div class='header'>
+                            <img src='http://$domain/incidenciesja/public/assets/brand/logo_tot_black.png' alt='Imatge de recuperació'>
+                        </div>
+                        <div class='content'>
+                            <p>Hola <strong>$Nom_Usuari $Cognom_Usuari</strong>,</p>
+                            <p>Per favor, fes clic en l'enllaç següent per restablir la teva contrasenya:</p>
+                            <p><a href='$resetLink'>$resetLink</a></p>
+                            <p>Si no has sol·licitat un restabliment de contrasenya, ignora aquest correu electrònic.</p>
+                        </div>
+                        <div class='footer'>
+                            <p>IncidenciesJa! - Tots els drets reservats</p>
+                        </div>
+                    </div>
                 </body>
                 </html>
-            ";
+                ";
                 $headers = "MIME-Version: 1.0" . "\r\n";
                 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                $headers = "From: no-reply@incidenciesja.com";
-
+                $headers .= "From: no-reply@incidenciesja.com" . "\r\n";
+            
                 if (mail($email, $subject, $message, $headers)) {
                     echo "<script>alert('Correu electrònic de recuperació enviat.');</script>";
                     echo '<script>window.location.href = "../public/index.php?action=login";</script>';
@@ -212,6 +256,8 @@ if (isset($_GET['action'])) {
             break;
         case 'resetPassword':
             $controller->resetPassword();
+            break;
+        case 'token':
             break;
         default:
             echo "Acció no vàlida.";
