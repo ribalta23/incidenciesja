@@ -69,6 +69,7 @@ class GestorUsuarisController{
             try {
                
                 if ($this->model->insertarUsuari($nom, $cognoms, $email, $rol, $imatge, $password_hash, $tipus_id, $telefono)) {
+                    $this->enviarCorreu($nom, $email, $password,$congoms);
                     header('Location: ../public/index.php?action=mostrarUsuaris');
                     exit();
                 } else {
@@ -220,6 +221,81 @@ class GestorUsuarisController{
             $existe = $this->model->obtenirCorreu($email);
             echo json_encode(['existe' => $existe]);
         }
+    }
+    public function enviarCorreu($nom, $email, $password,$cognoms) {
+        
+        
+            $domain = $_SERVER['HTTP_HOST'];
+            $resetLink = "http://$domain/incidenciesja/public/index.php?action=veureIncidencia&idIncidencia=$id_incidencia";
+            $subject = "Usuari creat - IncidenciesJa!";
+            $message = "
+            <html>
+            <head>
+                <title>Usuari creat a IncidenciesJa</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        line-height: 1.6;
+                        color: #333;
+                    }
+                    .container {
+                        width: 80%;
+                        margin: 0 auto;
+                        padding: 20px;
+                        border: 1px solid #ddd;
+                        border-radius: 10px;
+                        background-color: #f9f9f9;
+                    }
+                    .header {
+                        text-align: center;
+                        margin-bottom: 20px;
+                    }
+                    .header img {
+                        max-width: 150px;
+                        height: auto;
+                    }
+                    .content {
+                        text-align: left;
+                    }
+                    .content p {
+                        margin-bottom: 20px;
+                    }
+                    .footer {
+                        text-align: center;
+                        margin-top: 20px;
+                        font-size: 0.9em;
+                        color: #777;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class='container'>
+                    <div class='header'>
+                        <img src='http://$domain/incidenciesja/public/assets/brand/logo_tot_black.png' alt='Imatge de recuperació'>
+                    </div>
+                    <div class='content'>
+                        <p>Hola <strong>$nom $cognoms</strong>,</p>
+                        <p>S'et a creat un usuari a incidenciesJa.</p>
+                        <p>Les teves dades d'accés són:</p>
+                        <p>Usuari: $email</p>
+                        <p>Contrasenya: $password</p>
+                        
+                        <p>Gràcies</p>
+                    </div>
+                    <div class='footer'>
+                        <p>IncidenciesJa! - Tots els drets reservats</p>
+                    </div>
+                </div>
+            </body>
+            </html>
+            ";
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+            $headers .= "From: no-reply@incidenciesja.com" . "\r\n";
+            mail($email, $subject, $message, $headers);
+        
+        
+        
     }
 
 
