@@ -43,10 +43,12 @@ class IncidenciaController {
             $this->incidencia->id_tipo_incidencia = $_POST['id_tipo_incidencia'];
             $this->incidencia->id_usuari_creacio = $_POST['id_usuari_creacio'];
             
-            if(isset($_POST['aula'])){
+            if(isset($_POST['aula']) && !empty($_POST['aula'])){
                 $this->incidencia->id_espai = $_POST['aula'];
-            } else if (isset($_POST['altres'])) {
+            } else if (isset($_POST['altres']) && !empty($_POST['altres'])) {
                 $this->incidencia->id_espai = $_POST['altres'];
+            } else {
+                $this->incidencia->id_espai = null; // or handle the error appropriately
             }
             
             $upload_names = [];
