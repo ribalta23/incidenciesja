@@ -61,7 +61,7 @@ class UsuariController {
                 header('Location: ../public/index.php');
                 exit();
             } else {
-                echo "<script>alert('Usuari o contrasenya incorrectes.');</script>";
+                
                 header('Location: ../public/index.php?action=login');
             }
         }
