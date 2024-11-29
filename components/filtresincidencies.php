@@ -45,7 +45,7 @@
         </div>
         <div class="form_element">
             <label for="estat">Localitzacio</label>
-            <select name="tipus_localitzacio" id="tipus_localitzacio" onchange="mostrarElementos()" required>
+            <select name="tipus_localitzacio" id="tipus_localitzacio" onchange="mostrarElementos()">
                 <option value="" selected>Selecciona un espai</option>
                 <option value="aules">Aules</option>
                 <option value="altres">Altres</option>
